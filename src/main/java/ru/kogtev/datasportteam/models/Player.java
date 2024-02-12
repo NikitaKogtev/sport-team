@@ -2,6 +2,7 @@ package ru.kogtev.datasportteam.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -14,27 +15,27 @@ public class Player {
     private int id;
 
     @Column(name = "first_name")
-    @NotEmpty
+    @NotNull
     @Size(min = 2, max = 50, message = "Имя игрока не должно быть пустым")
     private String firstName;
 
     @Column(name = "second_name")
-    @NotEmpty
+    @NotNull
     @Size(min = 2, max = 50, message = "Фамилия игрока не должно быть пустым")
     private String secondName;
 
     @Column(name = "third_name")
-    @NotEmpty
+    @NotNull
     @Size(min = 2, max = 50, message = "Отчество игрока не должно быть пустым")
     private String thirdName;
 
     @Column(name = "birth_date")
-    @NotEmpty
+    @NotNull
     @Size(min = 1950, max = 2020, message = "Дата рождения игрока должна быть заполнена по форме 'YYYY' от 1950 до 2020 гг. ")
     private int birthDate;
 
     @Column(name = "role")
-    @NotEmpty
+    @NotNull
     private String role;
 
     @ManyToOne
