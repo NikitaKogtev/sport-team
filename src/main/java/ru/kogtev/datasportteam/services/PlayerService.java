@@ -18,38 +18,57 @@ import java.util.stream.Collectors;
 @Service
 public class PlayerService {
     private final PlayerRepository playerRepository;
+    private final TeamRepository teamRepository;
     private final ModelMapper modelMapper;
 
-    public PlayerService(PlayerRepository playerRepository, ModelMapper modelMapper) {
+    public PlayerService(PlayerRepository playerRepository, TeamRepository teamRepository, ModelMapper modelMapper) {
         this.playerRepository = playerRepository;
+        this.teamRepository = teamRepository;
         this.modelMapper = modelMapper;
     }
 
     //получить всех участников конкретной команды
-    public List<PlayerDTO> getPlayersByTeamId (int teamId) {
+    public List<PlayerDTO> getPlayersByTeamId(int teamId) {
         List<Player> players = playerRepository.findByTeamOwnerId(teamId);
         return players.stream()
                 .map(player -> modelMapper.map(player, PlayerDTO.class))
                 .collect(Collectors.toList());
     }
 
-//    // перевести участника из одной команды в другую
-//    public void transferPlayer(int id, Team team, Player updatePlayer) {
-//        updatePlayer.setId(id);
-//        updatePlayer.setTeamOwner(team);
-//        playerRepository.save(updatePlayer);
-//    }
-//
-//    // изменение данных участника команды
-//    public void update(int id, Player updatePlayer) {
-//        updatePlayer.setId(id);
-//        playerRepository.save(updatePlayer);
-//    }
-//
-//    //удаление участника команды
-//    public void delete(int id) {
-//        playerRepository.deleteById(id);
-//    }
+    //фильтрация игроков по роле в команде
+    public List<PlayerDTO> getPlayersByRole(int teamId, String role) {
+        List<Player> players = playerRepository.findByTeamOwnerIdAndRole(teamId, role);
+        return players.stream()
+                .map(player -> modelMapper.map(player, PlayerDTO.class))
+                .collect(Collectors.toList());
+    }
+
+
+    //создание(добавление) участника команды
+    public Player save(Player player) {
+        return playerRepository.save(player);
+    }
+
+    //перевести участника из одной команды в другую
+    public void transferPlayer(int playerId, int newTeamId) {
+        Player player = playerRepository.findById(playerId).get();
+        Team team = teamRepository.findById(newTeamId).get();
+        player.setTeamOwner(team);
+        playerRepository.save(player);
+    }
+
+    //изменение данных участника команды
+    public void update(int id, PlayerDTO updatePlayer) {
+        Player player = playerRepository.findById(id).get();
+        modelMapper.map(updatePlayer, player);
+        player.setId(id);
+        playerRepository.save(player);
+    }
+
+    //удаление участника команды
+    public void delete(int id) {
+        playerRepository.deleteById(id);
+    }
 
 
 }

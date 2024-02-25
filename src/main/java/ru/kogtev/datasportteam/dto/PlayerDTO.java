@@ -1,5 +1,6 @@
 package ru.kogtev.datasportteam.dto;
 
+import org.hibernate.validator.constraints.Range;
 import ru.kogtev.datasportteam.models.Team;
 
 import javax.persistence.*;
@@ -24,7 +25,7 @@ public class PlayerDTO {
     private String thirdName;
 
     @NotNull
-    @Size(min = 1950, max = 2020, message = "Дата рождения игрока должна быть заполнена по форме 'YYYY' от 1950 до 2020 гг. ")
+    @Range(min = 1950, max = 2020, message = "Дата рождения игрока должна быть заполнена по форме 'YYYY' от 1950 до 2020 гг. ")
     private int birthDate;
 
     @NotNull

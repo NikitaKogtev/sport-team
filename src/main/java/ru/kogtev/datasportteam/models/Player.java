@@ -1,6 +1,7 @@
 package ru.kogtev.datasportteam.models;
 
 
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -32,7 +33,7 @@ public class Player {
 
     @Column(name = "birth_date")
     @NotNull
-    @Size(min = 1950, max = 2020, message = "Дата рождения игрока должна быть заполнена по форме 'YYYY' от 1950 до 2020 гг. ")
+    @Range(min = 1950, max = 2020, message = "Дата рождения игрока должна быть заполнена по форме 'YYYY' от 1950 до 2020 гг. ")
     private int birthDate;
 
     @Column(name = "role")
@@ -110,4 +111,5 @@ public class Player {
     public void setTeamOwner(Team teamOwner) {
         this.teamOwner = teamOwner;
     }
+
 }
