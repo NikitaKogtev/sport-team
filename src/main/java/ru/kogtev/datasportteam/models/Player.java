@@ -1,12 +1,13 @@
 package ru.kogtev.datasportteam.models;
 
+
+
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Player")
+@Table(name = "player")
 public class Player {
 
     @Column(name = "id")
@@ -39,7 +40,7 @@ public class Player {
     private String role;
 
     @ManyToOne
-    @JoinColumn(name = "team_id", referencedColumnName = "id")
+    @JoinColumn(name = "team_id")
     private Team teamOwner;
 
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Integer> {
-    List<Player> findByTeamOwner(Team team);
+    List<Player> findByTeamOwnerId(int teamId);
 
-    List<Player> findByTeamOwnerAndRole(Team team, String role);
+  //  List<Player> findByTeamOwnerAndRole(Team team, String role);
 }

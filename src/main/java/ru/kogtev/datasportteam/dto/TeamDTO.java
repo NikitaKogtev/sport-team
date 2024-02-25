@@ -2,13 +2,14 @@ package ru.kogtev.datasportteam.dto;
 
 import ru.kogtev.datasportteam.models.Player;
 
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
 public class TeamDTO {
+
+    private int id;
 
     @NotNull
     @Size(min = 2, max = 50, message = "Название команды не должно пустым")
@@ -23,8 +24,13 @@ public class TeamDTO {
     @Size(min = 1000, max = 2024, message = "Год основания должен быть записан по форме 'YYYY' от 1000 до 2024 гг. ")
     private int foundDate;
 
-    @OneToMany(mappedBy = "teamOwner")
-    private List<Player> players;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTeamName() {
         return teamName;
@@ -50,11 +56,4 @@ public class TeamDTO {
         this.foundDate = foundDate;
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
 }

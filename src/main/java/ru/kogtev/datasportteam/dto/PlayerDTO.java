@@ -9,6 +9,8 @@ import javax.validation.constraints.Size;
 
 public class PlayerDTO {
 
+    private int id;
+
     @NotNull
     @Size(min = 2, max = 50, message = "Имя игрока не должно быть пустым")
     private String firstName;
@@ -28,7 +30,13 @@ public class PlayerDTO {
     @NotNull
     private String role;
 
-    private Team teamOwner;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -70,11 +78,4 @@ public class PlayerDTO {
         this.role = role;
     }
 
-    public Team getTeamOwner() {
-        return teamOwner;
-    }
-
-    public void setTeamOwner(Team teamOwner) {
-        this.teamOwner = teamOwner;
-    }
 }

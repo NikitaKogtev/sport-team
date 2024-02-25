@@ -1,16 +1,15 @@
 package ru.kogtev.datasportteam.models;
 
-import ru.kogtev.datasportteam.util.SportType;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
-import java.util.Objects;
+
 
 @Entity
-@Table(name = "Team")
+@Table(name = "team")
 public class Team {
 
     @Column(name = "id")
@@ -30,7 +29,7 @@ public class Team {
 
     @Column(name = "found_date")
     @NotNull
-    @Size(min = 1000, max = 2024, message = "Год основания должен быть записан по форме 'YYYY' от 1000 до 2024 гг. ")
+    @Range(min = 1000, max = 2024, message = "Год основания должен быть записан по форме 'YYYY' от 1000 до 2024 гг. ")
     private int foundDate;
 
     @OneToMany(mappedBy = "teamOwner")

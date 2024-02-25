@@ -1,42 +1,52 @@
 package ru.kogtev.datasportteam.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import ru.kogtev.datasportteam.dto.TeamDTO;
 import ru.kogtev.datasportteam.models.Team;
 import ru.kogtev.datasportteam.repositories.TeamRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-@Transactional(readOnly = true)
 public class TeamService {
 
     private final TeamRepository teamRepository;
+    private final ModelMapper modelMapper;
 
-    @Autowired
-    public TeamService(TeamRepository teamRepository) {
+    public TeamService(TeamRepository teamRepository, ModelMapper modelMapper) {
         this.teamRepository = teamRepository;
+        this.modelMapper = modelMapper;
     }
 
-    // получение списка всех команд
-    public List<Team> findAll() {
-        return teamRepository.findAll();
+    //получение списка всех команд
+    public List<TeamDTO> getAllTeams() {
+        List<Team> teams = teamRepository.findAll();
+        return teams.stream()
+                .map(team -> modelMapper.map(team, TeamDTO.class))
+                .collect(Collectors.toList());
     }
 
     //получение команд по виду спорта
-    public List<Team> findBySportType(String sportType) {
-        return teamRepository.findBySportType(sportType);
+    public List<TeamDTO> getTeamsBySportType(String sportType) {
+        List<Team> teams = teamRepository.findBySportType(sportType);
+        return teams.stream()
+                .map(team -> modelMapper.map(team, TeamDTO.class))
+                .collect(Collectors.toList());
     }
 
     //получение команд за период по дате основания
-    public List<Team> findByFoundDateBetween(int fistDate, int secondDate) {
-        return teamRepository.findByFoundDateBetween(fistDate, secondDate);
+    public List<TeamDTO> getTeamsByFoundDateBetween(int fistDate, int secondDate) {
+        List<Team> teams = teamRepository.findByFoundDateBetween(fistDate, secondDate);
+        return teams.stream()
+                .map(team -> modelMapper.map(team, TeamDTO.class))
+                .collect(Collectors.toList());
     }
 
     //создание(добавление) команды
-    public void save(Team team) {
-        teamRepository.save(team);
+    public Team save(Team team) {
+        return teamRepository.save(team);
     }
 
     //изменение данных команды
