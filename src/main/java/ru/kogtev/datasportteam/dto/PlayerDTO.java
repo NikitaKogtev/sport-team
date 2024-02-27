@@ -1,10 +1,7 @@
 package ru.kogtev.datasportteam.dto;
 
 import org.hibernate.validator.constraints.Range;
-import ru.kogtev.datasportteam.models.Team;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -78,5 +75,4 @@ public class PlayerDTO {
     public void setRole(String role) {
         this.role = role;
     }
-
 }

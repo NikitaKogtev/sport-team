@@ -1,11 +1,7 @@
 package ru.kogtev.datasportteam.dto;
 
-import ru.kogtev.datasportteam.models.Player;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 public class TeamDTO {
 
@@ -14,7 +10,6 @@ public class TeamDTO {
     @NotNull
     @Size(min = 2, max = 50, message = "Название команды не должно пустым")
     private String teamName;
-
 
     @NotNull
     @Size(min = 2, max = 50, message = "Наименование дисциплины не должно быть пустым")
@@ -55,5 +50,4 @@ public class TeamDTO {
     public void setFoundDate(int foundDate) {
         this.foundDate = foundDate;
     }
-
 }

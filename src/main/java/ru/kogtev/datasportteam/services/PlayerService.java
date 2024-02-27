@@ -1,17 +1,13 @@
 package ru.kogtev.datasportteam.services;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kogtev.datasportteam.dto.PlayerDTO;
-import ru.kogtev.datasportteam.dto.TeamDTO;
 import ru.kogtev.datasportteam.models.Player;
 import ru.kogtev.datasportteam.models.Team;
 import ru.kogtev.datasportteam.repositories.PlayerRepository;
 import ru.kogtev.datasportteam.repositories.TeamRepository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

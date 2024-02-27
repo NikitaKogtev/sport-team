@@ -36,6 +36,7 @@ public class Team {
     private List<Player> players;
 
     public Team() {
+
     }
 
     public Team(String teamName, String sportType, int foundDate) {

@@ -44,8 +44,8 @@ public class Player {
     @JoinColumn(name = "team_id")
     private Team teamOwner;
 
-
     public Player() {
+
     }
 
     public Player(String firstName, String secondName, String thirdName, int birthDate, String role) {
@@ -111,5 +111,4 @@ public class Player {
     public void setTeamOwner(Team teamOwner) {
         this.teamOwner = teamOwner;
     }
-
 }

@@ -2,15 +2,13 @@ package ru.kogtev.datasportteam.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ru.kogtev.datasportteam.dto.PlayerDTO;
 import ru.kogtev.datasportteam.models.Player;
-import ru.kogtev.datasportteam.models.Team;
 import ru.kogtev.datasportteam.services.PlayerService;
 
 import javax.validation.Valid;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/players")
@@ -45,5 +43,4 @@ public class PlayerController {
         playerService.delete(playerId);
         return ResponseEntity.ok().build();
     }
-
 }
