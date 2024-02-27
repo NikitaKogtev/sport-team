@@ -1,5 +1,6 @@
 package ru.kogtev.datasportteam.services;
 
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.kogtev.datasportteam.dto.PlayerDTO;
@@ -12,16 +13,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class PlayerService {
+
     private final PlayerRepository playerRepository;
     private final TeamRepository teamRepository;
     private final ModelMapper modelMapper;
-
-    public PlayerService(PlayerRepository playerRepository, TeamRepository teamRepository, ModelMapper modelMapper) {
-        this.playerRepository = playerRepository;
-        this.teamRepository = teamRepository;
-        this.modelMapper = modelMapper;
-    }
 
     //получить всех участников конкретной команды
     public List<PlayerDTO> getPlayersByTeamId(int teamId) {
@@ -38,7 +35,6 @@ public class PlayerService {
                 .map(player -> modelMapper.map(player, PlayerDTO.class))
                 .collect(Collectors.toList());
     }
-
 
     //создание(добавление) участника команды
     public Player save(Player player) {
@@ -65,6 +61,4 @@ public class PlayerService {
     public void delete(int id) {
         playerRepository.deleteById(id);
     }
-
-
 }

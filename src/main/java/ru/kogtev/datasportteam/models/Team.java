@@ -1,5 +1,7 @@
 package ru.kogtev.datasportteam.models;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "team")
+@Data
+@NoArgsConstructor
 public class Team {
 
     @Column(name = "id")
@@ -35,53 +39,9 @@ public class Team {
     @OneToMany(mappedBy = "teamOwner")
     private List<Player> players;
 
-    public Team() {
-
-    }
-
     public Team(String teamName, String sportType, int foundDate) {
         this.teamName = teamName;
         this.sportType = sportType;
         this.foundDate = foundDate;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-    public String getSportType() {
-        return sportType;
-    }
-
-    public void setSportType(String sportType) {
-        this.sportType = sportType;
-    }
-
-    public int getFoundDate() {
-        return foundDate;
-    }
-
-    public void setFoundDate(int foundDate) {
-        this.foundDate = foundDate;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
     }
 }

@@ -1,5 +1,6 @@
 package ru.kogtev.datasportteam.controllers;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/players")
+@AllArgsConstructor
 public class PlayerController {
 
     private final PlayerService playerService;
-
-    public PlayerController(PlayerService playerService) {
-        this.playerService = playerService;
-    }
 
     @PostMapping("/add")
     public ResponseEntity<Player> addTeam(@RequestBody @Valid Player player) {

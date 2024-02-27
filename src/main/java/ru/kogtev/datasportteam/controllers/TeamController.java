@@ -1,5 +1,6 @@
 package ru.kogtev.datasportteam.controllers;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +15,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/teams")
+@AllArgsConstructor
 public class TeamController {
+
     private final TeamService teamService;
     private final PlayerService playerService;
-
-    public TeamController(TeamService teamService, PlayerService playerService) {
-        this.teamService = teamService;
-        this.playerService = playerService;
-    }
-
 
     @GetMapping
     public ResponseEntity<List<TeamDTO>> getAllTeams() {

@@ -1,6 +1,8 @@
 package ru.kogtev.datasportteam.models;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -9,6 +11,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "player")
+@Data
+@NoArgsConstructor
 public class Player {
 
     @Column(name = "id")
@@ -44,71 +48,11 @@ public class Player {
     @JoinColumn(name = "team_id")
     private Team teamOwner;
 
-    public Player() {
-
-    }
-
     public Player(String firstName, String secondName, String thirdName, int birthDate, String role) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.thirdName = thirdName;
         this.birthDate = birthDate;
         this.role = role;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public String getThirdName() {
-        return thirdName;
-    }
-
-    public void setThirdName(String thirdName) {
-        this.thirdName = thirdName;
-    }
-
-    public int getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(int birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public Team getTeamOwner() {
-        return teamOwner;
-    }
-
-    public void setTeamOwner(Team teamOwner) {
-        this.teamOwner = teamOwner;
     }
 }
