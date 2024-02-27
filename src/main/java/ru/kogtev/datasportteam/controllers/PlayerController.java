@@ -19,7 +19,7 @@ public class PlayerController {
     private final PlayerService playerService;
 
     @PostMapping("/add")
-    public ResponseEntity<Player> addTeam(@RequestBody @Valid Player player) {
+    public ResponseEntity<Player> addPlayer(@RequestBody @Valid Player player) {
         Player addedPlayer = playerService.save(player);
         return ResponseEntity.status(HttpStatus.CREATED).body(addedPlayer);
     }
